@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo</title>
+</head>
+
+<body>
+    <hr>
+    <table>
+        <tr>
+            <td rowspan="7"><img src="Perfil.jpg" width="220" alt="Foto de Perfil"> </td>
+            <td colspan="2">
+                <hr>
+                <h1><b><ins>DADOS PESSOAIS</ins></b></h1>
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Nome:</b> Heloisa Domeni Leal</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td><b>Data de Nasc:</b> 04/10/2007</td>
+            <td><b>Est. Cívil:</b> Solteira</td>
+        </tr>
+
+        <tr>
+            <td><b>Endereço:</b> Marino Pereira Junior</td>
+            <td><b>Número:</b> 382</td>
+        </tr>
+
+        <tr>
+            <td><b>Bairro:</b> Costa Azul</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td><b>Cidade:</b> Matinho - PR</td>
+            <td><b>CEP:</b> 83.260-000</td>
+        </tr>
+
+        <tr>
+            <td><b>CPF:</b> 113.464.129-01</td>
+            <td></td>
+        </tr>
+
+    </table>
+    <hr>
+
+    <h2>QUALIFICAÇÃO PROFISSIONAL</h2>
+    <ul>
+        <li><b>Áreas de Atuação:</b> Engenharia de Software - Banco de Dados - Análise e Desenvolvimento de Sistemas -
+            Pacote Office</li>
+        <hr>
+        <li><b>Tecnologias:</b> Pacote Office - Linguagem Java - Linguagem C</li>
+    </ul>
+    <hr>
+
+    <h3>FORMAÇÃO ACADÊMICA</h3>
+    <ol>
+        <li><b>Curso Técnico:</b> Ensino Médio com Técnico em Informática</li>
+        <ul type="circle">
+            <li><ins>Instituição</ins>: Instituto Federal do Paraná - Campus Paranaguá</li>
+            <li><ins>Data de Início</ins>: 06/03/2023</li>
+            <li><ins>Data de Conclusão</ins>: Em andamento</li>
+        </ul>
+        <hr>
+        <li><b>Graduação:</b> Análise e Desenvolvimento de Sistemas</li>
+        <ul>
+            <li><ins>Instituição</ins>: Instituto Federal do Paraná - Campus Paranaguá</li>
+            <li><ins>Data de Início</ins>: 08/02/2027</li>
+            <li><ins>Data de Conclusão</ins>: 07/12/2029</li>
+        </ul>
+    </ol>
+    <hr>
+
+    <h4>EXPERIÊNCIA PROFISSIONAL</h4>
+    <ol>
+        <li><b>Estagiária como Instrutora na Escola Chosen</b> (set/21 a nov/21):</li>
+        <ul type="circle">
+            <li>Monitoramento de alunos no laboratório de informática;</li>
+            <li>Auxílio de instrutores durante as aulas;</li>
+            <li>Montagem de planilhas de presença.</li>
+        </ul>
+    </ol>
+    <hr>
+
+    <h4>CURSOS</h4>
+    <ul>
+        <li>Informática com pacote Office básico- Uninter (2021)</li>
+        <li>Curso livre de Técnicas de Manutenção de Computadores - Uninter (2021)</li>
+        <li>Curso livre de Empregabilidade - Uninter (2021)</li>
+        <li>LIBRAS e Inglês básico - IFPR (2023)</li>
+        <li>Robótica básica - IFPR (2023)
+        </li>
+    </ul>
+    <hr>
+
+    <h4>FORMULÁRIO DE CONTATO</h4>
+    <form action="http://localhost:3000/alunos" method="POST">
+        <div class="bloco">
+            <label>Assunto: </label>
+            <input type="radio" name="Assunto" value="Dúvida">Dúvidas
+            <input type="radio" name="Assunto" value="Mais">Mais Informações
+            <input type="radio" name="Assunto" value="Contratação">Contratação
+        </div>
+
+        <table>
+            <tr>
+                <td><label>Nome:</label></td>
+                <td><input type="text" name="nome"></td>
+            </tr>
+
+            <td><label>E-mail:</label></td>
+            <td><input type="text" name="email"></td>
+        </table>
+        <hr>
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+
+</html>
