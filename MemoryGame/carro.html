@@ -13,39 +13,54 @@
 
     <div class="linha1">
         <a href="#" onclick="toggleVisibility(this); return false;">
-            <img class="subimagens oculto" src="../MemoryGame/img/carro01.png" alt="carro1">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/carro01.png" alt="carro1">
+            </div>
         </a>
         <a href="#" onclick="toggleVisibility(this); return false;">
-            <img class="subimagens oculto" src="../MemoryGame/img/carro02.png" alt="carro2">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/carro02.png" alt="carro2">
+            </div>
         </a>
         <a href="#" onclick="toggleVisibility(this); return false;">
-            <img class="subimagens oculto" src="../MemoryGame/img/carro03.png" alt="carro3">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/carro03.png" alt="carro3">
+            </div>
         </a>
         <a href="#" onclick="toggleVisibility(this); return false;">
-            <img class="subimagens oculto" src="../MemoryGame/img/carro04.png" alt="carro4">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/carro04.png" alt="carro4">
+            </div>
         </a>
     </div>
 
     <div class="linha2">
         <a href="#" onclick="toggleVisibility(this); return false;">
-            <img class="subimagens oculto" src="../MemoryGame/img/carro03.png" alt="carro3">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/carro03.png" alt="carro3">
+            </div>
         </a>
         <a href="#" onclick="toggleVisibility(this); return false;">
-            <img class="subimagens oculto" src="../MemoryGame/img/carro04.png" alt="carro4">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/carro04.png" alt="carro4">
+            </div>
         </a>
         <a href="#" onclick="toggleVisibility(this); return false;">
-            <img class="subimagens oculto" src="../MemoryGame/img/carro02.png" alt="carro2">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/carro02.png" alt="carro2">
+            </div>
         </a>
         <a href="#" onclick="toggleVisibility(this); return false;">
-            <img class="subimagens oculto" src="../MemoryGame/img/carro01.png" alt="carro1">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/carro01.png" alt="carro1">
+            </div>
         </a>
     </div>
 
     <script type="text/javascript">
-        // Função para alternar a visibilidade da imagem
         function toggleVisibility(element) {
-            const img = element.querySelector("img"); // Seleciona a imagem clicada
-            img.classList.toggle("oculto"); // Alterna a classe "oculto"
+            const img = element.querySelector(".subimagens img"); 
+            img.classList.toggle("revelada"); 
         }
     </script>
 

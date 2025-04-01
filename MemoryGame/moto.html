@@ -1,12 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memória de Moto</title>
+    <title>Memória de moto</title>
     <link rel="stylesheet" href="./styles/layout.css">
 </head>
+
 <body>
-    motooo
+    <span class="play">PLAY NOW!!!</span>
+
+    <div class="linha1">
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/moto01.png" alt="moto1">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/moto02.png" alt="moto2">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/moto03.png" alt="moto3">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/moto04.png" alt="moto4">
+            </div>
+        </a>
+    </div>
+
+    <div class="linha2">
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/moto03.png" alt="moto3">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/moto04.png" alt="moto4">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/moto02.png" alt="moto2">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/moto01.png" alt="moto1">
+            </div>
+        </a>
+    </div>
+
+    <script type="text/javascript">
+        function toggleVisibility(element) {
+            const img = element.querySelector(".subimagens img");  
+            img.classList.toggle("revelada");  
+        }
+    </script>
+
 </body>
+
 </html>

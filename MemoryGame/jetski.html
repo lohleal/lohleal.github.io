@@ -1,12 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memória de Jetski</title>
+    <title>Memória de jetski</title>
     <link rel="stylesheet" href="./styles/layout.css">
 </head>
+
 <body>
-    jj
+    <span class="play">PLAY NOW!!!</span>
+
+    <div class="linha1">
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/jet01.png" alt="jetski1">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/jet02.png" alt="jetski2">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/jet03.png" alt="jetski3">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/jet04.png" alt="jetski4">
+            </div>
+        </a>
+    </div>
+
+    <div class="linha2">
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/jet03.png" alt="jetski3">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/jet04.png" alt="jetski4">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/jet02.png" alt="jetski2">
+            </div>
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <div class="subimagens">
+                <img class="img" src="../MemoryGame/img/jet01.png" alt="jetski1">
+            </div>
+        </a>
+    </div>
+
+    <script type="text/javascript">
+        function toggleVisibility(element) {
+            const img = element.querySelector(".subimagens img");  
+            img.classList.toggle("revelada"); 
+        }
+    </script>
+
 </body>
+
 </html>

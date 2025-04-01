@@ -74,24 +74,6 @@ a:hover .imagens {
     opacity: 0.6;
 }
 
-.subimagens {
-    display: inline-block;
-    margin-right: 30px;
-    margin-top: 30px;
-    width: 250px;
-    height: 200px;
-    border-radius: 20px;
-    box-shadow: 8px 8px 7px darkorange;
-    transition: transform 0.3s ease;
-    position: relative;
-    transition: background-color 0.3s;
-}
-
-a:hover .subimagens {
-    transform: scale(1.01);
-    opacity: 0.9;
-}
-
 .linha1 {
     text-align: center;
     margin-top: 50px;
@@ -114,12 +96,39 @@ a:hover .subimagens {
     right: 0;
 }
 
-.oculto {
-    visibility: hidden; /* A imagem começa invisível */
-    background-color: white; /* Cor de fundo para a carta quando estiver oculta */
-    box-shadow: 8px 8px 7px darkorange; /* Mesmo efeito de borda da imagem */
-    width: 250px;  /* Tamanho igual ao da imagem */
-    height: 200px; /* Tamanho igual ao da imagem */
-    border-radius: 20px; /* Estilo das bordas igual ao da imagem */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+.subimagens {
+    opacity: 1;
+    display: inline-block;
+    margin-right: 30px;
+    margin-top: 30px;
+    width: 230px;
+    height: 160px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 7px darkorange;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.subimagens img {
+    opacity: 0;
+    display: inline-block;
+    margin-right: 30px;
+    width: 230px;
+    height: 160px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 7px darkorange;
+    position: relative;
+    object-fit: cover; 
+    transition: opacity 0.3s ease;
+    object-fit: contain;
+}
+
+.subimagens img.revelada {
+    opacity: 1;
+}
+
+a:hover .subimagens {
+    transform: scale(1.03);
+    opacity: 0.6;
 }
