@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memória de Carro</title>
+    <link rel="stylesheet" href="./styles/layout.css">
+</head>
+
+<body>
+    <span class="play">PLAY NOW!!!</span>
+
+    <div class="linha1">
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <img class="subimagens oculto" src="../MemoryGame/img/carro01.png" alt="carro1">
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <img class="subimagens oculto" src="../MemoryGame/img/carro02.png" alt="carro2">
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <img class="subimagens oculto" src="../MemoryGame/img/carro03.png" alt="carro3">
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <img class="subimagens oculto" src="../MemoryGame/img/carro04.png" alt="carro4">
+        </a>
+    </div>
+
+    <div class="linha2">
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <img class="subimagens oculto" src="../MemoryGame/img/carro03.png" alt="carro3">
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <img class="subimagens oculto" src="../MemoryGame/img/carro04.png" alt="carro4">
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <img class="subimagens oculto" src="../MemoryGame/img/carro02.png" alt="carro2">
+        </a>
+        <a href="#" onclick="toggleVisibility(this); return false;">
+            <img class="subimagens oculto" src="../MemoryGame/img/carro01.png" alt="carro1">
+        </a>
+    </div>
+
+    <script type="text/javascript">
+        // Função para alternar a visibilidade da imagem
+        function toggleVisibility(element) {
+            const img = element.querySelector("img"); // Seleciona a imagem clicada
+            img.classList.toggle("oculto"); // Alterna a classe "oculto"
+        }
+    </script>
+
+</body>
+
+</html>

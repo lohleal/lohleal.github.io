@@ -1,17 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Memória</title>
     <link rel="stylesheet" href="./styles/layout.css">
 </head>
+
 <body>
     <div class="cabecalho">
-        <img src="../MemoryGame/img/memory_icon.png" alt="Logo do Jogo">
+        <img class="icone" src="../MemoryGame/img/memory_icon.png" alt="Logo do Jogo">
         <h1>MEMORY GAME</h1>
     </div>
+
+    <div class="galeria">
+        <a href="carro.html" 
+           onmouseover="mostrarNome('Carro')" 
+           onmouseout="esconderNome()">
+            <img class="imagens" src="../MemoryGame/img/carro.png" alt="carro">
+        </a>
+
+        <a href="moto.html" 
+           onmouseover="mostrarNome('Moto')" 
+           onmouseout="esconderNome()">
+            <img class="imagens" src="../MemoryGame/img/moto.png" alt="moto">
+        </a>
+
+        <a href="jetski.html" 
+           onmouseover="mostrarNome('Jetski')" 
+           onmouseout="esconderNome()">
+            <img class="imagens" src="../MemoryGame/img/jetski.png" alt="jetski">
+        </a>
+    </div>
+
+    <div class="nome-imagem" id="nome-imagem"></div>
+
     <div class="rodape"></div>
-    <h2>Desenvolvimento: Heloisa Domeni Leal</h2>
+    <h2>Desenvolvimento: Heloisa Leal e Kamilly</h2>
+
+    <script>
+        // Função para mostrar o nome da imagem
+        function mostrarNome(nome) {
+            const nomeImagem = document.getElementById("nome-imagem");
+            nomeImagem.style.display = "block";
+            nomeImagem.textContent = nome;
+        }
+
+        // Função para esconder o nome da imagem
+        function esconderNome() {
+            const nomeImagem = document.getElementById("nome-imagem");
+            nomeImagem.style.display = "none";
+        }
+    </script>
 </body>
+
 </html>
