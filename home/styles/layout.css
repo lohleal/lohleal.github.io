@@ -2,21 +2,69 @@ body {
     background-color: white;
     margin: 0;
     text-align: left;
+
+    display: grid;
+    min-height: 100vh;
+
+    grid-template-columns: 1fr 150px;
+    grid-template-rows: 130px 1fr 40px;
+
+    grid-template-areas:
+        'topo topo'
+
+        'conteudo menu'
+
+        'rodape rodape';
+
 }
+
+header {
+    grid-area: topo;
+}
+
+
+main {
+    grid-area: conteudo; 
+}
+
+nav {
+    grid-area: menu; 
+}
+
+footer {
+    grid-area: rodape;
+}
+
 
 h1 {
     font-size: 45px !important;
     color: rosybrown;
 }
 
-h2{
+h2 {
     padding-left: 15px;
     font-size: 50px !important;
     color: rosybrown;
 }
 
+.conteudoInicial {
+}
+
+.rodape {
+    width: 100%;
+    background-color: rosybrown;
+    align-items: center;
+    bottom: 0;
+    color: white;
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .fundo {
-    height: 120px;
     max-width: 100%;
     background-color: rosybrown;
     display: flex;
@@ -36,19 +84,19 @@ h2{
     padding-right: 5px;
     padding-top: 30px;
     color: white;
-    transition: border-color 0.3s ease !important;
+    transition: border-color 0.3s ease, color 0.3s ease !important;
 }
 
 .material-symbols-outlined:hover {
     border-right-color: rgb(240, 179, 204);
-    transition: color 0.3s ease;
+    color: rgb(240, 179, 204);
 }
 
 .botoes {
     display: inline-block;
     padding-left: 15px;
     padding-top: 70px;
-    font-size: 25px;
+    font-size: 30px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
@@ -67,16 +115,16 @@ a:hover {
 
 .atividades {
     padding-left: 10px;
-    padding-top: 18px;
     font-size: 22px;
     line-height: 1.4;
+    text-align: left; 
 }
 
-.menu{
+.menu {
     display: none;
 }
 
-.barrinha{
+.barrinha {
     display: none;
 }
 
@@ -95,22 +143,19 @@ a:hover {
 .menu-mobile {
     display: none;
     flex-direction: column;
+    align-items: center;
+    flex-direction: column;
     background-color: rosybrown;
-    position: absolute; 
-    top: 120px; 
-    left: 0;
-    width: 150px;
-    height: 100vh;
-    padding: 20px;
-    z-index: 999;
-  }
+    right: 0;
+    padding: 10px;
+}
 
 /* Estilo dos links no menu mobile */
 .menu-mobile a {
     color: white;
     font-size: 20px;
     text-decoration: none;
-    padding: 10px 0;
+    align-items: center;
 }
 
 /* Mostra o menu se o checkbox for marcado */
@@ -120,9 +165,6 @@ a:hover {
 
 
 @media screen and (max-width: 800px) {
-    .atividades {
-        font-size: 20px;
-    }
 
     .botoes {
         display: none;
@@ -134,8 +176,58 @@ a:hover {
     }
 
     .barrinha {
-        font-size: 30px;
         color: white;
         border: none;
+        display: inline-block;
+        font-size: 45px !important;
+        transition: color 0.3s ease !important;
+        right: 0;
+        position: absolute;
+        top: 20px;
+        padding: 20px;
     }
+
+    .barrinha:active,
+    .barrinha:hover {
+        color: rgb(240, 179, 204);
+        text-decoration: none;
+    }
+
+    .atividades {
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 45px !important;
+    }
+
+    h1 {
+        font-size: 40px !important;
+    }
+
+    .material-symbols-outlined {
+        font-size: 60px !important;
+    }
+
+    .rodape {
+        font-size: 12px;
+    }
+
+    main {
+        display: flex;
+        justify-content: center; 
+        padding-top: 40px;    
+    }
+    
 }
+
+@media screen and (min-width: 801px) {
+    .menu-mobile {
+      display: none !important;
+    }
+  
+    .menu-toggle {
+      display: none;
+    }
+  }
+  
