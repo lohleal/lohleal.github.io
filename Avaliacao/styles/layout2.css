@@ -1,0 +1,27 @@
+body {
+    background-color: white;
+    margin: 0;
+}
+
+.cabecalho {
+    max-width: 100%;
+    background-color: darkblue;
+    display: flex;
+    height: 100px;
+    margin-bottom: 2px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: top;
+}
+
+table.response {
+    padding: overflow-x auto;
+}

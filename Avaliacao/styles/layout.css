@@ -1,0 +1,123 @@
+body {
+    background-color: white;
+    margin: 0;
+    text-align: left;
+
+    display: grid;
+    min-height: 100vh;
+
+    grid-template-columns: 1fr 740px;
+    grid-template-rows: 1fr;
+
+    grid-template-areas: 'texto imagem';
+}
+
+main {
+    grid-area: texto;
+}
+
+nav {
+    grid-area: imagem;
+    background-image: url('../img/scotland_yard.png');
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    margin-top: 100px;
+    color: darkblue;
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: darkred;
+    font-size: 30px;
+    padding-bottom: 30px;
+    margin-top: 0px;
+}
+
+
+.inicial {
+    padding-left: 30px;
+}
+
+.dadoslogin {
+    font-size: 25px;
+    color: darkred;
+}
+
+.caixinha {
+    padding-bottom: 22px;
+}
+
+input {
+    text-decoration: none;
+    border: 0px white solid;
+    border-radius: 3px;
+    border-style: outset;
+    border-left-color: black;
+    border-left-width: 1px;
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+    width: 90%;
+    height: 20px;
+    font-size: 15px;
+    padding: 5px 10px;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid darkred;
+}
+
+.botao {
+    background-color: darkblue;
+    color: white;
+    padding: 10px 12px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 15%;
+}
+
+.botao:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+
+.esqueceusenha {
+    color: darkorange;
+    font-size: 20px;
+    display: inline block;
+    padding-left: 310px;
+}
+
+@media screen and (max-width: 800px) {
+    nav {
+        display: none;
+    }
+
+}
+
+.containerbotao {
+    margin-top: 40px;
+}
+
+#footer-line {
+    border-bottom: 2px solid darkblue;
+    width: 92%;
+    margin-top: 35px;
+}
+
+.icones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+    gap: 120px;
+    cursor: pointer;
+}
