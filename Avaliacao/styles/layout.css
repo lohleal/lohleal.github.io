@@ -88,24 +88,23 @@ input:focus {
     cursor: pointer;
 }
 
+.containerbotao {
+    margin-top: 40px;
+}
 
 .esqueceusenha {
     color: darkorange;
     font-size: 20px;
     display: inline block;
-    padding-left: 310px;
+    padding-left: 400px;
 }
 
 @media screen and (max-width: 800px) {
     nav {
         display: none;
     }
-
 }
 
-.containerbotao {
-    margin-top: 40px;
-}
 
 #footer-line {
     border-bottom: 2px solid darkblue;

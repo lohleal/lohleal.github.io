@@ -1,14 +1,73 @@
 body {
     background-color: white;
     margin: 0;
+
+    display: grid;
+    min-height: 100vh;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 177px 1fr 57px;
+
+    grid-template-areas:
+        'topo topo'
+
+        'conteudo conteudo'
+
+        'rodape rodape';
+
+    overflow-y: hidden;
 }
+
+header {
+    grid-area: topo;
+}
+
+main {
+    grid-area: conteudo;
+}
+
+footer {
+    grid-area: rodape;
+}
+
+.cabecalho1 {
+    max-width: 100%;
+    background-color: darkblue;
+    display: flex;
+    height: 90px;
+    margin-bottom: 2px;
+    justify-content: center;
+    align-items: center;
+}
+
+.subcabecalho {
+    width: 97%;
+    background-color: white;
+    display: flex;
+    height: 78px;
+    margin-bottom: 2px;
+    justify-content: center;
+    align-items: center;
+    gap: 24vw;
+}
+
 
 .cabecalho {
     max-width: 100%;
     background-color: darkblue;
     display: flex;
-    height: 100px;
+    height: 85px;
     margin-bottom: 2px;
+    justify-content: center;
+    align-items: center;
+}
+
+.rodape {
+    width: 100%;
+    background-color: darkblue;
+    display: flex;
+    height: 57px;
+
 }
 
 table {
@@ -16,12 +75,128 @@ table {
     border-collapse: collapse;
 }
 
-th,
-td {
-    padding: 10px;
-    text-align: top;
+th {
+    padding: 25px;
+    text-align: center;
+    color: darkred;
+    font-size: 30px;
 }
 
-table.response {
-    padding: overflow-x auto;
+td {
+    padding: 27px;
+    text-align: center;
+    color: darkblue;
+    font-size: 18px;
 }
+
+
+.titulo2 {
+    font-size: 50px;
+    color: white;
+
+}
+
+.icone {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+    width: 80px;
+    height: 78px;
+    border-radius: 50%;
+}
+
+.titulodoido {
+    animation: mudarCor 2s infinite alternate;
+    font-size: max(12px, 1.6vw);
+    font-weight: bold;
+}
+
+@keyframes mudarCor {
+    0% {
+        color: darkblue;
+    }
+
+    25% {
+        color: rgb(37, 65, 219);
+    }
+
+    50% {
+        color: lightblue;
+    }
+
+    75% {
+        color: rgb(243, 206, 206);
+    }
+
+    100% {
+        color: darkred;
+    }
+}
+
+.linhacor {
+    background-color: #D7E4F6;
+}
+
+tr.linhacor td {
+    background-color: #D7E4F6;
+}
+
+.fixo {
+    position: sticky;
+    right: 0;
+    background-color: white;
+}
+
+.aviaoicone {
+    font-size: 30px;
+    position: absolute;
+    bottom: 2px;
+    color: white;
+}
+
+.aviao-esquerda {
+    left: 0px;
+    transform: scalesX(1);
+    animation: moverEsquerda 3s ease-in-out infinite;
+}
+
+.aviao-direita {
+    right: 0px;
+    transform: scaleX(-1);
+    animation: moverDireita 3s ease-in-out infinite;
+}
+
+@keyframes moverEsquerda {
+    0% {
+        left: 0px;
+        transform: rotate(0deg) scaleX(1);
+    }
+
+    50% {
+        left: 45vw;
+        transform: rotate(360deg) scaleX(1);
+    }
+
+    100% {
+        left: 0px;
+        transform: rotate(0deg) scaleX(1);
+    }
+}
+
+@keyframes moverDireita {
+    0% {
+        right: 0px;
+        transform: rotate(0deg) scaleX(-1);
+    }
+
+    50% {
+        right: 45vw;
+        transform: rotate(-360deg) scaleX(-1);
+    }
+
+    100% {
+        right: 0px;
+        transform: rotate(0deg) scaleX(-1);
+    }
+}
+
