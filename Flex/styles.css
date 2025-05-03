@@ -1,0 +1,61 @@
+body {
+  background-color: white;
+  margin: 0;
+  text-align: left;
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 100% 100%;
+  grid-template-areas: "menu conteudo";
+}
+
+nav {
+  grid-area: menu;
+  background-color: lightcoral;
+}
+
+main {
+  grid-area: conteudo;
+}
+
+.titulo {
+  font-size: 30px;
+  color: whitesmoke;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.titulo2 {
+  font-size: 25px;
+  color: whitesmoke;
+  padding-top: 30px;
+}
+
+.centro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.flex-container > div {
+  background-color: whitesmoke;
+  margin: 5px;
+  padding: 18px 18px;
+}/*# sourceMappingURL=styles.css.map */
