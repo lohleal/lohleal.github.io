@@ -99,13 +99,6 @@ input:focus {
     padding-left: 400px;
 }
 
-@media screen and (max-width: 800px) {
-    nav {
-        display: none;
-    }
-}
-
-
 #footer-line {
     border-bottom: 2px solid darkblue;
     width: 92%;
@@ -119,4 +112,10 @@ input:focus {
     padding: 20px 30px;
     gap: 120px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    nav {
+        display: none;
+    }
 }
