@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
         style="border-bottom-left-radius: 70px; border-bottom-right-radius: 70px;">
 
@@ -86,10 +86,10 @@
         </div>
     </nav>
 
-    <div class="row">
-        <div class="col">
-            <div class="row">
-                <div class="col-4 col-md-6 col-xl-4">
+    <div class="row p-3">
+        <div class="col-2">
+            <div class="row mb-3">
+                <div class="col">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
                             <span class="material-icons me-2">school</span>
@@ -103,8 +103,8 @@
             </div>
 
 
-            <div class="row">
-                <div class="col-4 col-md-6 col-xl-4">
+            <div class="row mb-3">
+                <div class="col">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
                             <span class="material-icons me-2">show_chart</span>
@@ -117,8 +117,8 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-4 col-md-6 col-xl-4">
+            <div class="row mb-3">
+                <div class="col">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
                             <span class="material-icons me-2">alarm</span>
@@ -133,7 +133,8 @@
         </div>
 
 
-        <div class="col">
+        <!-- graficos-->
+        <div class="col-6">
             <div class="row">
                 <label for="customRange3" class="form-label"></label>
                 <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
@@ -153,13 +154,16 @@
 
 
             <div class="row">
-                grafico
+                <div class="d-flex justify-content-center align-items-center">
+                    <div id="piechart" style="width: 900px; height: 500px;"></div>
+                </div>
             </div>
 
         </div>
 
 
-        <div class="col">
+        <!-- tabela1-->
+        <div class="col-4">
             <div class="row">
                 <table class="table table-bordered">
                     <thead>
@@ -192,62 +196,59 @@
                     </tbody>
                 </table>
             </div>
-        </div>
 
-
-
-
-        <div class="row">
 
         </div>
 
     </div>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
     google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawBarChart);
+    google.charts.setOnLoadCallback(drawPieChart);
 
-    function drawChart() {
-
+    function drawBarChart() {
         var data = google.visualization.arrayToDataTable([
             ['Element', 'Density', { role: 'style' }],
-            ['1° BIM', 8.94, 'black'],            // RGB value
-            ['2° BIM', 10.49, 'gray'],            // English color name
+            ['1° BIM', 8.94, 'black'],
+            ['2° BIM', 10.49, 'gray'],
             ['3° BIM', 19.30, 'black'],
-            ['4° BIM', 21.45, 'gray'], // CSS-style declaration
+            ['4° BIM', 21.45, 'gray'],
         ]);
 
-        var options = {};
+        var options = {
+            title: 'FREQUÊNCIAS',
+        };
 
         var chart = new google.visualization.BarChart(document.getElementById('barchart'));
-
         chart.draw(data, options);
     }
 
+    function drawPieChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Conceitos', 'Satisfação'],
+            ['A', 21.6],
+            ['B', 32.4],
+            ['C', 24.3],
+            ['D', 21.6],
+        ]);
+
+        var options = {
+            title: 'CONCEITOS',
+            colors: ['#CCC', '#999', '#666', '#333'],
+            is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    }
 </script>
+
 
 </html>
