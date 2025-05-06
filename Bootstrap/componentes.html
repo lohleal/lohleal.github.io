@@ -16,13 +16,21 @@
 <style>
     .table tr td,
     .table tr th {
-        border: none !important; 
-        border-bottom: 1px solid #b3b3b3 !important; 
+        border: none !important;
+        border-bottom: 1px solid #b3b3b3 !important;
+    }
+</style>
+
+<style>
+    #barchart>div,
+    #piechart>div {
+        border-radius: 5px;
+        overflow: hidden;
     }
 </style>
 
 
-<body class="bg-light">
+<body style="background-color: rgb(226, 226, 226);">
 
     <!-- Barra Menu -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
@@ -105,36 +113,43 @@
         <div class="col-2">
             <div class="row mb-3">
                 <div class="col">
-                    <div class="card">
+                    <div class="card" style="min-height: 165px; display: flex; flex-direction: column;">
                         <div class="card-header d-flex align-items-center">
                             <span class="material-icons me-2">school</span>
                             Conceito
                         </div>
-                        <div class="card-body text-center"><b>A</b></div>
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <b class="text-secondary" style="font-size: 2rem;">A</b>
+                        </div>
                     </div>
                 </div>
             </div>
 
+
             <div class="row mb-3">
                 <div class="col">
-                    <div class="card">
+                    <div class="card" style="min-height: 165px; display: flex; flex-direction: column;">
                         <div class="card-header d-flex align-items-center">
                             <span class="material-icons me-2">show_chart</span>
                             Frequência
                         </div>
-                        <div class="card-body text-center"><b>89.5%</b></div>
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <b class="text-secondary" style="font-size: 2rem;">89.5%</b>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col">
-                    <div class="card">
+                    <div class="card" style="min-height: 165px; display: flex; flex-direction: column;">
                         <div class="card-header d-flex align-items-center">
                             <span class="material-icons me-2">alarm</span>
                             Horas Afins
                         </div>
-                        <div class="card-body text-center"><b>74</b></div>
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <b class="text-secondary" style="font-size: 2rem;">74</b>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,18 +158,18 @@
 
         <!-- Gráficos -->
         <div class="col-6">
-            <div class="row">
+            <div class="row mb-3">
                 <label for="customRange3" class="form-label"></label>
                 <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
             </div>
 
-            <div class="row">
+            <div class="row mb-4">
                 <div class="d-flex justify-content-center align-items-center">
                     <div id="barchart" style="width: 900px; height: 200px;"></div>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row mb-4">
                 <div class="d-flex justify-content-center align-items-center">
                     <div id="piechart" style="width: 900px; height: 200px;"></div>
                 </div>
@@ -164,8 +179,11 @@
 
         <!-- Tabelas -->
         <div class="col-md-4">
-            <div class="card-body bg-white p-3">
-                <table class="table table-dark table-bordered table-striped text-white" style="height: auto;">
+            <!-- Adicionando borda arredondada e padding ao contêiner -->
+            <div class="card-body bg-white p-3 rounded-3 shadow-sm">
+                <!-- Primeira Tabela -->
+                <table class="table table-dark table-bordered table-striped text-white"
+                    style="height: auto; width: 100%;">
                     <thead class="text-center">
                         <tr>
                             <th>Componente Curricular</th>
@@ -197,182 +215,211 @@
                     </tbody>
                 </table>
 
-                <div class="row">
-                    <table class="table table-bordered table-striped mt-3" style="height: auto;">
-                        <thead class="text-center">
-                            <tr class="g-secondary">
-                                <th>Conceito</th>
-                                <th>Quantidade de Ocorrências</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            <tr>
-                                <td>A</td>
-                                <td>189</td>
-                            </tr>
-                            <tr>
-                                <td>B</td>
-                                <td>228</td>
-                            </tr>
-                            <tr>
-                                <td>C</td>
-                                <td>211</td>
-                            </tr>
-                            <tr>
-                                <td>D</td>
-                                <td>187</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <!-- Segunda Tabela -->
+                <table class="table table-bordered table-striped mt-3" style="height: auto; width: 100%;">
+                    <thead class="text-center">
+                        <tr class="g-secondary">
+                            <th>Conceito</th>
+                            <th>Quantidade de Ocorrências</th>
+                        </tr>
+                    </thead>
+                    <tbody style="text-align: center;">
+                        <tr>
+                            <td>A</td>
+                            <td>189</td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>228</td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td>211</td>
+                        </tr>
+                        <tr>
+                            <td>D</td>
+                            <td>187</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!-- Offcanvas -->
+                <div class="col">
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasConceito"
+                        aria-labelledby="offcanvasConceitoLabel">
+
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasConceitoLabel"><b>REGISTRO DE CONCEITOS</b></h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+
+                        <div class="offcanvas-body p-4" style="background-color: #eaeaeb; border-radius: 15px;"
+                            aria-labelledby="offcanvasConceitoLabel">
+                            <div class="row-5 mb-3 p-4 bg-white rounded shadow-sm">
+                                <b class="text-secondary">Disciplinas</b>
+                                <select class="form-select mt-2" multiple aria-label="Disciplinas">
+                                    <option value="1">Artes</option>
+                                    <option value="2">Biologia</option>
+                                    <option value="3">Desenvolvimento Web</option>
+                                    <option value="4">Engenharia de Software</option>
+                                    <option value="5">Geografia</option>
+                                </select>
+                            </div>
+
+                            <div class="row-5 mb-3 p-3 bg-white rounded shadow-sm">
+                                <b class="text-secondary mb-2">Conceitos</b>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1" checked>
+                                    <label class="form-check-label" for="flexRadioDefault1">A</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault2">
+                                    <label class="form-check-label" for="flexRadioDefault2">B</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault3">
+                                    <label class="form-check-label" for="flexRadioDefault3">C</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault4">
+                                    <label class="form-check-label" for="flexRadioDefault4">D</label>
+                                </div>
+                            </div>
+
+                            <div class="row-5 p-3 bg-white rounded shadow-sm">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="obs-label"><b>OBS.</b></span>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"
+                                        aria-describedby="obs-label"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
+
+                <!-- Mapinha -->
+                <div class="modal fade" id="modalFrequencia" tabindex="-1" aria-labelledby="modalFrequenciaLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalFrequenciaLabel"><b>MAPA DE FREQUÊNCIAS</b></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Fechar"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="mapchart" style="width: 100%; justify-items: center; height: 550px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
-        </div>
-
-    </div>
-
-
-    <!-- Offcanvas -->
-    <div class="col">
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasConceito"
-            aria-labelledby="offcanvasConceitoLabel">
-
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasConceitoLabel"><b>REGISTRO DE CONCEITOS</b></h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
-            </div>
-
-            <div class="offcanvas-body">
-                <div class="row">
-                    <b class="text-secondary">Disciplinas</b>
-                    <select class="form-select" multiple aria-label="Disciplinas">
-                        <option value="1">Artes</option>
-                        <option value="2">Biologia</option>
-                        <option value="3">Desenvolvimento Web</option>
-                        <option value="4">Engenharia de Software</option>
-                        <option value="5">Geografia</option>
-                    </select>
-                </div>
-
-                <div class="row">
-                    <b class="text-secondary">Conceitos</b>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                            checked>
-                        <label class="form-check-label" for="flexRadioDefault2">A</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault1">B</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                        <label class="form-check-label" for="flexRadioDefault1">C</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                        <label class="form-check-label" for="flexRadioDefault1">D</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="obs-label"><b>OBS.</b></span>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                            aria-describedby="obs-label"></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Mapinha -->
-    <div class="modal fade" id="modalFrequencia" tabindex="-1" aria-labelledby="modalFrequenciaLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalFrequenciaLabel"><b>MAPA DE FREQUÊNCIAS</b></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="mapchart" style="width: 100%; justify-items: center; height: 550px;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
-    </div>
+            <!-- Scripts :( -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+            <script type="text/javascript">
+                google.charts.load('current', { 'packages': ['corechart', 'geochart'] });
+                google.charts.setOnLoadCallback(drawBarChart);
+                google.charts.setOnLoadCallback(drawPieChart);
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawBarChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Bimestre', 'Frequência', { role: 'style' }],
+                        ['1º BIM', 89.5, 'black'],
+                        ['2º BIM', 91.0, 'gray'],
+                        ['3º BIM', 86.2, 'black'],
+                        ['4º BIM', 87.0, 'gray']
+                    ]);
+
+                    var options = {
+                        title: 'FREQUÊNCIAS',
+                        bars: 'horizontal',
+                        legend: 'none',
+                        hAxis: {
+                            minValue: 85,
+                            maxValue: 92,
+                            format: '#'
+                        },
+                        chartArea: { width: '80%', height: '70%' },
+                        titleTextStyle: {
+                            fontSize: 14,
+                            bold: true
+                        }
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('barchart'));
+                    chart.draw(data, options);
+                }
+
+                function drawPieChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Conceitos', 'Quantidade'],
+                        ['A', 21.6],
+                        ['B', 32.4],
+                        ['C', 24.3],
+                        ['D', 21.6],
+                    ]);
+
+                    var options = {
+                        title: 'CONCEITOS',
+                        colors: ['#CCC', '#999', '#666', '#333'],
+                        is3D: true,
+
+                        titleTextStyle: {
+                            fontSize: 14,
+                            bold: true
+                        }
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                    chart.draw(data, options);
+                }
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Country', 'Popularity'],
+                        ['Germany', 300],
+                        ['United States', 350],
+                        ['Brazil', 450],
+                        ['France', 600],
+                        ['Japan', 500],
+                    ]);
 
 
+                    var options = {
+                        width: '100%',
+                        height: 500,
+                        colorAxis: {
+                            colors: ['#cccccc', '#333333']
+                        },
+                        backgroundColor: '#f8f9fa',
+                        datalessRegionColor: '#eeeeee',
+                        defaultColor: '#999999'
+                    };
 
-    <!-- Scripts :( -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['corechart', 'geochart'] });
-        google.charts.setOnLoadCallback(drawBarChart);
-        google.charts.setOnLoadCallback(drawPieChart);
-        google.charts.setOnLoadCallback(drawChart);
+                    var chart = new google.visualization.GeoChart(document.getElementById('mapchart'));
 
-        function drawBarChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Element', 'Quantidade', { role: 'style' }],
-                ['1° BIM', 8.94, 'black'],
-                ['2° BIM', 10.49, 'gray'],
-                ['3° BIM', 19.30, 'black'],
-                ['4° BIM', 21.45, 'gray'],
-            ]);
+                    chart.draw(data, options);
+                }
 
-            var options = { title: 'FREQUÊNCIAS' };
-            var chart = new google.visualization.BarChart(document.getElementById('barchart'));
-            chart.draw(data, options);
-        }
-
-        function drawPieChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Conceitos', 'Quantidade'],
-                ['A', 21.6],
-                ['B', 32.4],
-                ['C', 24.3],
-                ['D', 21.6],
-            ]);
-
-            var options = {
-                title: 'CONCEITOS',
-                colors: ['#CCC', '#999', '#666', '#333'],
-                is3D: true,
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-            chart.draw(data, options);
-        }
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Country', 'Popularity'],
-                ['Germany', 300],
-                ['United States', 350],
-                ['Brazil', 450],
-                ['France', 600],
-                ['Japan', 500],
-            ]);
-
-            var options = {
-                width: '100%',
-                height: 500
-            };
-
-            var chart = new google.visualization.GeoChart(document.getElementById('mapchart'));
-
-            chart.draw(data, options);
-        }
-
-    </script>
+            </script>
 </body>
 
 </html>
