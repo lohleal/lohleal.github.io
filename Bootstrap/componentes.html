@@ -13,12 +13,24 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
+<style>
+    .table tr td,
+    .table tr th {
+        border: none !important; 
+        border-bottom: 1px solid #b3b3b3 !important; 
+    }
+</style>
+
+
 <body class="bg-light">
 
+    <!-- Barra Menu -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
         style="border-bottom-left-radius: 70px; border-bottom-right-radius: 70px;">
+
         <div class="container-fluid">
             <div class="row w-100 align-items-center text-center">
+
                 <div class="col-2">
                     <a href="#" class="navbar-brand">
                         <img src="https://dadosabertos.ifpr.edu.br/base/images/ckan-logo.png" alt="Logo IFPR"
@@ -59,6 +71,7 @@
                     </div>
                 </div>
 
+
                 <div class="col-auto">
                     <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c"
                         title="Escolha uma cor">
@@ -72,19 +85,22 @@
                             Mais
                         </a>
                         <ul class="dropdown-menu">
-                            <!-- Link para abrir o offcanvas -->
-                            <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasConceito">Conceito</a></li>
-                            <li><a class="dropdown-item" href="#">Frequência</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasConceito">Conceito</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#modalFrequencia">Frequência</a></li>
                             <li><a class="dropdown-item" href="#">Horas Afins</a></li>
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="col-2"></div>
             </div>
         </div>
     </nav>
 
+
+    <!-- Linha 2 da divisão-->
     <div class="row p-3">
         <div class="col-2">
             <div class="row mb-3">
@@ -124,6 +140,7 @@
             </div>
         </div>
 
+
         <!-- Gráficos -->
         <div class="col-6">
             <div class="row">
@@ -144,100 +161,163 @@
             </div>
         </div>
 
-        <!-- Tabela -->
-        <div class="col-4">
-            <div class="row">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Componente Curricular</th>
-                            <th>Frequência (%)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Artes</td>
-                            <td>89.5</td>
-                        </tr>
-                        <tr>
-                            <td>Biologia</td>
-                            <td>92.2</td>
-                        </tr>
-                        <tr>
-                            <td>Desenvolvimento Web</td>
-                            <td>78.5</td>
-                        </tr>
-                        <tr>
-                            <td>Engenharia de Software</td>
-                            <td>92.2</td>
-                        </tr>
-                        <tr>
-                            <td>Geografia</td>
-                            <td>95.8</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
 
-            <div class="row">
-                <table class="table table-bordered">
-                    <thead>
+        <!-- Tabelas -->
+        <div class="col-md-4">
+            <div class="card-body bg-white p-3">
+                <table class="table table-dark table-bordered table-striped text-white" style="height: auto;">
+                    <thead class="text-center">
                         <tr>
                             <th>Componente Curricular</th>
                             <th>Frequência (%)</th>
                         </tr>
                     </thead>
-                    <tbody>
+
+                    <tbody class="text-center">
                         <tr>
                             <td>Artes</td>
-                            <td>89.5</td>
+                            <td>89.5%</td>
                         </tr>
                         <tr>
                             <td>Biologia</td>
-                            <td>92.2</td>
+                            <td>92.2%</td>
                         </tr>
                         <tr>
                             <td>Desenvolvimento Web</td>
-                            <td>78.5</td>
+                            <td>78.5%</td>
                         </tr>
                         <tr>
                             <td>Engenharia de Software</td>
-                            <td>92.2</td>
+                            <td>92.2%</td>
                         </tr>
                         <tr>
                             <td>Geografia</td>
-                            <td>95.8</td>
+                            <td>95.8%</td>
                         </tr>
                     </tbody>
                 </table>
+
+                <div class="row">
+                    <table class="table table-bordered table-striped mt-3" style="height: auto;">
+                        <thead class="text-center">
+                            <tr class="g-secondary">
+                                <th>Conceito</th>
+                                <th>Quantidade de Ocorrências</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>A</td>
+                                <td>189</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>228</td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>211</td>
+                            </tr>
+                            <tr>
+                                <td>D</td>
+                                <td>187</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <!-- Offcanvas para o conceito -->
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasConceito" aria-labelledby="offcanvasConceitoLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasConceitoLabel">Conceito</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <p>Aqui você pode colocar o conteúdo relacionado ao conceito.</p>
-            </div>
-          </div>
+    </div>
 
+
+    <!-- Offcanvas -->
+    <div class="col">
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasConceito"
+            aria-labelledby="offcanvasConceitoLabel">
+
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasConceitoLabel"><b>REGISTRO DE CONCEITOS</b></h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <div class="row">
+                    <b class="text-secondary">Disciplinas</b>
+                    <select class="form-select" multiple aria-label="Disciplinas">
+                        <option value="1">Artes</option>
+                        <option value="2">Biologia</option>
+                        <option value="3">Desenvolvimento Web</option>
+                        <option value="4">Engenharia de Software</option>
+                        <option value="5">Geografia</option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <b class="text-secondary">Conceitos</b>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                            checked>
+                        <label class="form-check-label" for="flexRadioDefault2">A</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault1">B</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                        <label class="form-check-label" for="flexRadioDefault1">C</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                        <label class="form-check-label" for="flexRadioDefault1">D</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="obs-label"><b>OBS.</b></span>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            aria-describedby="obs-label"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Mapinha -->
+    <div class="modal fade" id="modalFrequencia" tabindex="-1" aria-labelledby="modalFrequenciaLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFrequenciaLabel"><b>MAPA DE FREQUÊNCIAS</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="mapchart" style="width: 100%; justify-items: center; height: 550px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
     </div>
 
 
-    <!-- Scripts -->
+
+    <!-- Scripts :( -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.load('current', { 'packages': ['corechart', 'geochart'] });
         google.charts.setOnLoadCallback(drawBarChart);
         google.charts.setOnLoadCallback(drawPieChart);
+        google.charts.setOnLoadCallback(drawChart);
 
         function drawBarChart() {
             var data = google.visualization.arrayToDataTable([
@@ -271,6 +351,27 @@
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
             chart.draw(data, options);
         }
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Country', 'Popularity'],
+                ['Germany', 300],
+                ['United States', 350],
+                ['Brazil', 450],
+                ['France', 600],
+                ['Japan', 500],
+            ]);
+
+            var options = {
+                width: '100%',
+                height: 500
+            };
+
+            var chart = new google.visualization.GeoChart(document.getElementById('mapchart'));
+
+            chart.draw(data, options);
+        }
+
     </script>
 </body>
 
