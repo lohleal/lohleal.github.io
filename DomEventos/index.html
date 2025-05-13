@@ -116,6 +116,8 @@
         let posicaoAtual = 0;
         const velocidadeMovimento = 20;
         let podeAtirar = true;
+        let ambosMisseisForamDisparados = false;
+
 
         const tempoEl = document.querySelector("#tempo");
         const overlay = document.getElementById("paused");
@@ -154,9 +156,16 @@
         }
 
         function atualizarPosicaoMisseis() {
-            const naveRect = nave.getBoundingClientRect();
-            missilEsquerda.style.left = (naveRect.left + 7) + 'px';
-            missilDireita.style.left = (naveRect.right - 25) + 'px';
+            // Só atualiza a posição dos mísseis se eles não estiverem em voo
+            if (missilEsquerdaDisponivel) {
+                const naveRect = nave.getBoundingClientRect();
+                missilEsquerda.style.left = (naveRect.left + 7) + 'px';
+            }
+
+            if (missilDireitaDisponivel) {
+                const naveRect = nave.getBoundingClientRect();
+                missilDireita.style.left = (naveRect.right - 25) + 'px';
+            }
         }
 
         let missilEsquerdaDisponivel = true;
@@ -168,6 +177,8 @@
 
         function dispararMissil(missil, ehEsquerda) {
             let posicaoY = 60;
+            const naveRect = nave.getBoundingClientRect();
+            const posicaoXInicial = ehEsquerda ? (naveRect.left + 7) : (naveRect.right - 25);
 
             if (ehEsquerda) {
                 missilEsquerdaDisponivel = false;
@@ -182,6 +193,7 @@
             const animacao = setInterval(() => {
                 posicaoY += 30;
                 missil.style.bottom = posicaoY + 'px';
+                missil.style.left = posicaoXInicial + 'px'; // Mantém a posição X fixa
 
                 if (posicaoY > window.innerHeight) {
                     clearInterval(animacao);
@@ -192,24 +204,33 @@
                         missilDireitaRetornou = true;
                     }
 
-                    // Só reposiciona se ambos foram disparados e ambos retornaram
-                    if (
-                        missilEsquerdaDisparado && missilDireitaDisparado &&
-                        missilEsquerdaRetornou && missilDireitaRetornou
-                    ) {
-                        missilEsquerda.style.bottom = '60px';
-                        missilDireita.style.bottom = '60px';
+                    // Marca que o míssil foi disparado
+                    if (missilEsquerdaDisparado && missilDireitaDisparado) {
+                        ambosMisseisForamDisparados = true;
+                    }
 
-                        atualizarPosicaoMisseis();
+                    // Recarrega apenas se ambos já foram disparados
+                    if (ambosMisseisForamDisparados && missilEsquerdaRetornou && missilDireitaRetornou) {
+                        const naveRectAtual = nave.getBoundingClientRect();
+
+                        missilEsquerda.style.bottom = '60px';
+                        missilEsquerda.style.left = (naveRectAtual.left + 7) + 'px';
+
+                        missilDireita.style.bottom = '60px';
+                        missilDireita.style.left = (naveRectAtual.right - 25) + 'px';
 
                         missilEsquerdaDisponivel = true;
                         missilDireitaDisponivel = true;
-
-                        // Reset flags para novo ciclo
                         missilEsquerdaDisparado = false;
                         missilDireitaDisparado = false;
+
+                        // Reset para o próximo ciclo de disparos
+                        missilEsquerdaRetornou = false;
+                        missilDireitaRetornou = false;
+                        ambosMisseisForamDisparados = false;
                     }
                 }
+
             }, 50);
         }
 
