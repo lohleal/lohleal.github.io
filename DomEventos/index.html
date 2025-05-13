@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
-
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
             overflow: hidden;
@@ -35,10 +35,11 @@
             border-radius: 8px;
             color: white;
             padding: 15px;
-            width: fit-content;
             margin: 20px;
             display: flex;
-            gap: 20px;
+            gap: 10px;
+            width: 250px;
+            height: 250px;
         }
 
         .pausado {
@@ -60,11 +61,17 @@
             position: fixed;
             bottom: 20px;
             left: 50%;
-            transform: translateX(-50%);
             height: 160px;
             width: auto;
         }
 
+        .missil {
+            position: absolute;
+            width: 20px;
+            height: 80px;
+            bottom: 60px;
+            visibility: visible !important;
+        }
     </style>
 </head>
 
@@ -76,42 +83,45 @@
 
     <!-- telinha -->
     <div class="row">
-        <div class="col">
-            <div class="row">
-                <div class="fundotransp d-flex align-items-center text-center">
-                    <div class="col">
-                        <div class="row"><img src="../DomEventos/img/clock.png" alt="relógio" class="iconezinho"></div>
-                        <div class="row"><img src="../DomEventos/img/nave.png" alt="nave" class="iconezinho"></div>
-                        <div class="row"><img src="../DomEventos/img/alien.png" alt="alien" class="iconezinho"></div>
-                    </div>
-
-                    <div class="col">
-                        <div class="row" id="tempo">00:00:00</div>
-                        <div class="row">LIFE: 0</div>
-                        <div class="row">ALIEN: 0</div>
-                    </div>
-                </div>
+        <div class="fundotransp d-flex flex-column justify-content-center">
+            <div class="d-flex align-items-center justify-content-between">
+                <img src="../DomEventos/img/clock.png" alt="relógio" class="iconezinho">
+                <div id="tempo">00:00:00</div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+                <img src="../DomEventos/img/nave.png" alt="nave" class="iconezinho">
+                <div>LIFE: 3</div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+                <img src="../DomEventos/img/alien.png" alt="alien" class="iconezinho">
+                <div>ALIEN: 0</div>
             </div>
         </div>
 
         <div class="col text-center">
+            <img src="../DomEventos/img/missil.png" id="missil-esquerda" class="missil">
+            <img src="../DomEventos/img/missil.png" id="missil-direita" class="missil">
             <img src="../DomEventos/img/nave.png" alt="Nave" id="nave">
         </div>
     </div>
 
 
     <script>
+        let ladoProximoMissil = 'direita';
         let segundos = 0;
         let minutos = 0;
         let horas = 0;
         let id = null;
         let pausado = false;
+        let posicaoAtual = 0;
+        const velocidadeMovimento = 20;
+        let podeAtirar = true;
 
         const tempoEl = document.querySelector("#tempo");
         const overlay = document.getElementById("paused");
-
         const nave = document.getElementById("nave");
-        const margemMovimento = 10;
+        const missilEsquerda = document.getElementById("missil-esquerda");
+        const missilDireita = document.getElementById("missil-direita");
 
         function formatarTempo(valor) {
             return valor.toString().padStart(2, '0');
@@ -127,7 +137,6 @@
                 minutos = 0;
                 horas++;
             }
-
             tempoEl.textContent = `${formatarTempo(horas)}:${formatarTempo(minutos)}:${formatarTempo(segundos)}`;
         }
 
@@ -137,14 +146,86 @@
             overlay.style.display = "none";
         }
 
+
         function stopCounter() {
             clearInterval(id);
             pausado = true;
             overlay.style.display = "flex";
         }
 
-        document.addEventListener("keydown", function (e) {
+        function atualizarPosicaoMisseis() {
+            const naveRect = nave.getBoundingClientRect();
+            missilEsquerda.style.left = (naveRect.left + 7) + 'px';
+            missilDireita.style.left = (naveRect.right - 25) + 'px';
+        }
 
+        let missilEsquerdaDisponivel = true;
+        let missilDireitaDisponivel = true;
+        let missilEsquerdaRetornou = true;
+        let missilDireitaRetornou = true;
+        let missilEsquerdaDisparado = false;
+        let missilDireitaDisparado = false;
+
+        function dispararMissil(missil, ehEsquerda) {
+            let posicaoY = 60;
+
+            if (ehEsquerda) {
+                missilEsquerdaDisponivel = false;
+                missilEsquerdaRetornou = false;
+                missilEsquerdaDisparado = true;
+            } else {
+                missilDireitaDisponivel = false;
+                missilDireitaRetornou = false;
+                missilDireitaDisparado = true;
+            }
+
+            const animacao = setInterval(() => {
+                posicaoY += 30;
+                missil.style.bottom = posicaoY + 'px';
+
+                if (posicaoY > window.innerHeight) {
+                    clearInterval(animacao);
+
+                    if (ehEsquerda) {
+                        missilEsquerdaRetornou = true;
+                    } else {
+                        missilDireitaRetornou = true;
+                    }
+
+                    // Só reposiciona se ambos foram disparados e ambos retornaram
+                    if (
+                        missilEsquerdaDisparado && missilDireitaDisparado &&
+                        missilEsquerdaRetornou && missilDireitaRetornou
+                    ) {
+                        missilEsquerda.style.bottom = '60px';
+                        missilDireita.style.bottom = '60px';
+
+                        atualizarPosicaoMisseis();
+
+                        missilEsquerdaDisponivel = true;
+                        missilDireitaDisponivel = true;
+
+                        // Reset flags para novo ciclo
+                        missilEsquerdaDisparado = false;
+                        missilDireitaDisparado = false;
+                    }
+                }
+            }, 50);
+        }
+
+        function criarMissil() {
+            if (ladoProximoMissil === 'esquerda' && missilEsquerdaDisponivel) {
+                dispararMissil(missilEsquerda, true);
+                ladoProximoMissil = 'direita';
+            }
+            else if (ladoProximoMissil === 'direita' && missilDireitaDisponivel) {
+                dispararMissil(missilDireita, false);
+                ladoProximoMissil = 'esquerda';
+            }
+        }
+
+
+        document.addEventListener("keydown", function (e) {
             if (e.key.toLowerCase() === "p") {
                 if (pausado) {
                     startCounter();
@@ -153,16 +234,42 @@
                 }
             }
 
+            if (e.key === " " && !pausado) {
+                criarMissil();
+            }
+
             if (pausado) return;
 
-            const navePos = nave.getBoundingClientRect();
-            
+            const larguraNave = nave.offsetWidth;
+            const larguraTela = window.innerWidth;
+            const painelInfo = document.querySelector('.fundotransp');
+
+            const limiteEsquerdo = painelInfo.offsetWidth + 30;
+            const limiteDireito = larguraTela - 30;
+
+            posicaoAtual = parseInt(nave.style.left) || larguraTela / 2;
+
             if (e.key === "ArrowRight") {
-                nave.style.left = `${navePos.right + margemMovimento}px`;
+                if (posicaoAtual + larguraNave + velocidadeMovimento <= limiteDireito) {
+                    posicaoAtual += velocidadeMovimento;
+                    nave.style.left = posicaoAtual + "px";
+                    atualizarPosicaoMisseis();
+                }
             } else if (e.key === "ArrowLeft") {
-                nave.style.left = `${navePos.left - margemMovimento}px`;
+                if (posicaoAtual - velocidadeMovimento >= limiteEsquerdo) {
+                    posicaoAtual -= velocidadeMovimento;
+                    nave.style.left = posicaoAtual + "px";
+                    atualizarPosicaoMisseis();
+                }
             }
         });
+
+        window.onload = function () {
+            posicaoAtual = window.innerWidth / 2;
+            nave.style.left = posicaoAtual + "px";
+            atualizarPosicaoMisseis();
+            startCounter();
+        };
 
     </script>
 
