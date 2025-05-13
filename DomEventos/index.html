@@ -72,6 +72,26 @@
             bottom: 60px;
             visibility: visible !important;
         }
+
+        #aliens {
+            position: absolute;
+            top: -100px;
+            left: 770px;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 40px;
+            z-index: 5;
+        }
+
+        .alien {
+            width: 100px;
+            height: auto;
+        }
+
+        .invisivel {
+            visibility: hidden !important;
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -80,6 +100,15 @@
     <div class="pausado" id="paused">
         <span>GAME PAUSED</span>
     </div>
+
+    <div class="pausado" id="youlose">
+        <span>YOU LOSE</span>
+    </div>
+
+    <div class="pausado" id="gameOver">
+        <span>GAME OVER</span>
+    </div>
+
 
     <!-- telinha -->
     <div class="row">
@@ -90,15 +119,22 @@
             </div>
             <div class="d-flex align-items-center justify-content-between">
                 <img src="../DomEventos/img/nave.png" alt="nave" class="iconezinho">
-                <div>LIFE: 3</div>
+                <div id="vidas">LIFE: 3</div>
             </div>
             <div class="d-flex align-items-center justify-content-between">
                 <img src="../DomEventos/img/alien.png" alt="alien" class="iconezinho">
-                <div>ALIEN: 0</div>
+                <div id="contadorAliens">ALIEN: 0</div>
             </div>
         </div>
 
+
         <div class="col text-center">
+            <div id="aliens">
+                <img src="../DomEventos/img/alien.png" class="alien" id="alien1">
+                <img src="../DomEventos/img/alien.png" class="alien" id="alien2">
+                <img src="../DomEventos/img/alien.png" class="alien" id="alien3">
+            </div>
+
             <img src="../DomEventos/img/missil.png" id="missil-esquerda" class="missil">
             <img src="../DomEventos/img/missil.png" id="missil-direita" class="missil">
             <img src="../DomEventos/img/nave.png" alt="Nave" id="nave">
@@ -117,13 +153,23 @@
         const velocidadeMovimento = 20;
         let podeAtirar = true;
         let ambosMisseisForamDisparados = false;
+        let vidas = 3;
+        let navesAbatidas = 0;
+        let faseAtual = 1;
+        let velocidadeAliens = 1;
+
 
 
         const tempoEl = document.querySelector("#tempo");
-        const overlay = document.getElementById("paused");
+        const pausedOverlay = document.getElementById("paused");
+        const youLoseOverlay = document.getElementById("youlose");
+        const gameOverOverlay = document.getElementById("gameOver");
+        const contadorAliensEl = document.getElementById("contadorAliens");
+
         const nave = document.getElementById("nave");
         const missilEsquerda = document.getElementById("missil-esquerda");
         const missilDireita = document.getElementById("missil-direita");
+        const aliensContainer = document.getElementById("aliens");
 
         function formatarTempo(valor) {
             return valor.toString().padStart(2, '0');
@@ -143,20 +189,22 @@
         }
 
         function startCounter() {
-            id = setInterval(atualizarTempo, 1000);
+            gameOver = false;
             pausado = false;
-            overlay.style.display = "none";
+            pausedOverlay.style.display = "none";
+            id = setInterval(atualizarTempo, 1000);
+            moverAliens();
         }
 
-
-        function stopCounter() {
+        function stopCounter(exibirPause = true) {
             clearInterval(id);
             pausado = true;
-            overlay.style.display = "flex";
+            if (exibirPause) {
+                pausedOverlay.style.display = "flex";
+            }
         }
 
         function atualizarPosicaoMisseis() {
-            // Só atualiza a posição dos mísseis se eles não estiverem em voo
             if (missilEsquerdaDisponivel) {
                 const naveRect = nave.getBoundingClientRect();
                 missilEsquerda.style.left = (naveRect.left + 7) + 'px';
@@ -174,6 +222,40 @@
         let missilDireitaRetornou = true;
         let missilEsquerdaDisparado = false;
         let missilDireitaDisparado = false;
+
+        function verificarColisaoMissilAlien(missil) {
+            const missilRect = missil.getBoundingClientRect();
+            const aliens = aliensContainer.querySelectorAll('.alien:not(.invisivel)');
+
+            for (let alien of aliens) {
+                const alienRect = alien.getBoundingClientRect();
+
+                if (
+                    missilRect.left < alienRect.right &&
+                    missilRect.right > alienRect.left &&
+                    missilRect.top < alienRect.bottom &&
+                    missilRect.bottom > alienRect.top
+                ) {
+                    alien.classList.add('invisivel');
+                    missil.style.visibility = 'hidden';
+
+                    navesAbatidas++;
+                    contadorAliensEl.textContent = `ALIEN: ${navesAbatidas}`;
+
+                    if (navesAbatidas === 9) {
+                        document.querySelector('body').style.backgroundImage = "url('../DomEventos/img/backgroud4.jpg')";
+                    } else if (navesAbatidas === 6) {
+                        document.querySelector('body').style.backgroundImage = "url('../DomEventos/img/backgroud3.jpg')";
+                    } else if (navesAbatidas === 3) {
+                        document.querySelector('body').style.backgroundImage = "url('../DomEventos/img/backgroud2.jpg')";
+                    }
+
+                    return true;
+                }
+            }
+            return false;
+        }
+
 
         function dispararMissil(missil, ehEsquerda) {
             let posicaoY = 60;
@@ -193,10 +275,14 @@
             const animacao = setInterval(() => {
                 posicaoY += 30;
                 missil.style.bottom = posicaoY + 'px';
-                missil.style.left = posicaoXInicial + 'px'; // Mantém a posição X fixa
+                missil.style.left = posicaoXInicial + 'px';
 
-                if (posicaoY > window.innerHeight) {
+                // Verifica colisão a cada movimento do míssil
+                const colidiu = verificarColisaoMissilAlien(missil);
+
+                if (colidiu || posicaoY > window.innerHeight) {
                     clearInterval(animacao);
+                    missil.style.visibility = 'hidden';
 
                     if (ehEsquerda) {
                         missilEsquerdaRetornou = true;
@@ -204,27 +290,26 @@
                         missilDireitaRetornou = true;
                     }
 
-                    // Marca que o míssil foi disparado
                     if (missilEsquerdaDisparado && missilDireitaDisparado) {
                         ambosMisseisForamDisparados = true;
                     }
 
-                    // Recarrega apenas se ambos já foram disparados
                     if (ambosMisseisForamDisparados && missilEsquerdaRetornou && missilDireitaRetornou) {
                         const naveRectAtual = nave.getBoundingClientRect();
 
                         missilEsquerda.style.bottom = '60px';
                         missilEsquerda.style.left = (naveRectAtual.left + 7) + 'px';
+                        missilEsquerda.style.visibility = 'visible';
 
                         missilDireita.style.bottom = '60px';
                         missilDireita.style.left = (naveRectAtual.right - 25) + 'px';
+                        missilDireita.style.visibility = 'visible';
 
                         missilEsquerdaDisponivel = true;
                         missilDireitaDisponivel = true;
                         missilEsquerdaDisparado = false;
                         missilDireitaDisparado = false;
 
-                        // Reset para o próximo ciclo de disparos
                         missilEsquerdaRetornou = false;
                         missilDireitaRetornou = false;
                         ambosMisseisForamDisparados = false;
@@ -244,7 +329,6 @@
                 ladoProximoMissil = 'esquerda';
             }
         }
-
 
         document.addEventListener("keydown", function (e) {
             if (e.key.toLowerCase() === "p") {
@@ -285,13 +369,104 @@
             }
         });
 
+        const aliens = document.getElementById("aliens");
+        let alienPos = -100;
+        let gameOver = false;
+
+        function verificarColisaoComNave() {
+            if (gameOver) return;
+
+            const naveRect = nave.getBoundingClientRect();
+            const linhaNaveY = naveRect.top;
+            const alienImgs = aliens.querySelectorAll(".alien:not(.invisivel)");
+
+            for (let alien of alienImgs) {
+                const alienRect = alien.getBoundingClientRect();
+
+                if (alienRect.bottom >= linhaNaveY) {
+                    alien.classList.add('invisivel');
+
+                    if (!pausado) {
+                        perderVida();
+                    }
+                    break;
+                }
+            }
+        }
+
+        function perderVida() {
+            if (gameOver) return;
+
+            vidas--;
+            document.querySelector("#vidas").textContent = `LIFE: ${vidas}`;
+
+            pausado = true;
+            gameOver = true;
+
+            stopCounter(false);
+
+            if (vidas <= 0) {
+                gameOverOverlay.style.display = "flex";
+            } else {
+                youLoseOverlay.style.display = "flex";
+
+                setTimeout(() => {
+                    youLoseOverlay.style.display = "none";
+                    alienPos = -100;
+                    aliens.style.top = alienPos + "px";
+
+                    // Reseta todos os aliens para visíveis
+                    const allAliens = aliens.querySelectorAll('.alien');
+                    allAliens.forEach(alien => {
+                        alien.classList.remove('invisivel');
+                    });
+
+                    pausado = false;
+                    gameOver = false;
+                    startCounter();
+                    moverAliens();
+                }, 2000);
+            }
+        }
+
+        function moverAliens() {
+            if (gameOver) return;
+
+            alienPos += velocidadeAliens;
+            aliens.style.top = alienPos + "px";
+
+            verificarColisaoComNave();
+
+            if (!pausado && !gameOver) {
+                requestAnimationFrame(moverAliens);
+            }
+        }
+
+
+        function iniciarNovaFase() {
+            faseAtual++;
+            velocidadeAliens += 1;
+            contadorAliensEl.textContent = `ALIEN: ${navesAbatidas}`;
+
+            document.getElementById("alien1").classList.remove("invisivel");
+            document.getElementById("alien2").classList.remove("invisivel");
+            document.getElementById("alien3").classList.remove("invisivel");
+
+            aliens.style.top = "-100px"; // Reinicia a posição vertical dos aliens
+            alienPos = -100; // Posição inicial
+
+            // Reinicia a movimentação dos aliens
+            moverAliens();
+        }
+
+
         window.onload = function () {
             posicaoAtual = window.innerWidth / 2;
             nave.style.left = posicaoAtual + "px";
             atualizarPosicaoMisseis();
             startCounter();
+            moverAliens();
         };
-
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
