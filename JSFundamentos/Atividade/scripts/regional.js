@@ -1,4 +1,4 @@
-//const data_regionals = []
+const data_regional = []
 
 let id_regional = 1;
 function addRegional(){
@@ -7,23 +7,34 @@ function addRegional(){
     const input_sigla = form.querySelector('input[name="sigla"]')
     const input_cidade = form.querySelector('input[name="cidade"]')
     const table = document.querySelector('#table_regional');
+    const select = document.querySelector('#select_regional');
+    const option = document.createElement('option');
  
     const line = document.createElement('tr')
     const col_id = document.createElement('td')
     const col_sigla = document.createElement('td')
     const col_cidade = document.createElement('td')
 
-    col_id.textContent = id_regional; 
-    id_regional++;
-    col_sigla.textContent = input_sigla.value
-    col_cidade.textContent = input_cidade.value
+    const newRegional = {
+        id: id_regional,
+        sigla: input_sigla.value,
+        cidade: input_cidade.value
+    };
+    data_regional.push(newRegional);
 
-    const objRegional = {sigla: input_sigla.value, cidade: input_cidade.value}
-    addSelectRegional(objRegional);
+    col_id.textContent = newRegional.id 
+    col_sigla.textContent = newRegional.sigla
+    col_cidade.textContent = newRegional.cidade
 
+    option.value = newRegional.id
+    option.textContent = newRegional.sigla
+
+    select.appendChild(option);
     line.appendChild(col_id);
     line.appendChild(col_sigla);
     line.appendChild(col_cidade);
+
+    id_regional++;
  
     table.appendChild(line);
     
