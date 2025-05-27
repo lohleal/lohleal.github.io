@@ -26,6 +26,8 @@ function addReport() {
 
     addTableReport(newReport);
 
+    addQuant('Relatorios');
+
     input_data.value = '';
     select_subject.value = '';
     select_agent.value = '';

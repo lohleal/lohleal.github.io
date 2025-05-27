@@ -15,6 +15,8 @@ function addSubject() {
     addTableSubject(newSubject);
     addSelectSubject(newSubject);
 
+    addQuant('Assuntos');
+
     input_descricao.value = '';
 }
 

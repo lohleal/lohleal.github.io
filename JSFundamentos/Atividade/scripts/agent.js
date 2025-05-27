@@ -21,6 +21,8 @@ function addAgent() {
     addTableAgent(newAgent);
     addSelectAgent(newAgent); 
 
+    addQuant('Agentes');
+
     input_agent.value = '';
     select_regional.value = '';
 }

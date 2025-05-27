@@ -17,6 +17,8 @@ function addRegional() {
     addTableRegional(newRegional);
     addSelectRegional(newRegional);
 
+    addQuant('Regionais');
+
     input_cidade.value = '';
     input_sigla.value = '';
 }
