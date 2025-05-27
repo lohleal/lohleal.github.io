@@ -17,12 +17,24 @@ function drawChart() {
         ['Relatorios', quantidade.Relatorios, 'color: #f6c23e']
     ]);
 
+    //para y cmc no 0
+    const maxValor = Math.max(
+        quantidade.Assuntos,
+        quantidade.Regionais,
+        quantidade.Agentes,
+        quantidade.Relatorios,
+        1 // garante pelo menos 1 como máximo
+    );
+
     const options = {
         legend: { position: 'none' },
 
         vAxis: {
-            minValue: 0
-        }
+            viewWindow: {
+                min: 0,
+                max: maxValor
+            }
+        }    
     };
 
     chart = new google.visualization.ColumnChart(document.getElementById('chart'));
