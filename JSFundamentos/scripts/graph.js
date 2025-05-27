@@ -18,7 +18,11 @@ function drawChart() {
     ]);
 
     const options = {
-        legend: { position: 'none' }
+        legend: { position: 'none' },
+
+        vAxis: {
+            minValue: 0
+        }
     };
 
     chart = new google.visualization.ColumnChart(document.getElementById('chart'));
@@ -27,5 +31,5 @@ function drawChart() {
 
 function addQuant(nomeRegistro) {
     quantidade[nomeRegistro]++;
-    drawChart(); 
+    drawChart();
 }
