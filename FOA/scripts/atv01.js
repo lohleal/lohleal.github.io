@@ -1,28 +1,21 @@
-
-/*let soma = 0;
-function ex01() {
-    
-
-    for (i in arguments) {
-        soma += arguments[i];
-    }
-    return soma;
-}*/
-//console.log(ex01());
-//document.getElementById('output').innerText = 'output: ' + soma;
-
-let soma = 0
-const n1 = []
 function ex01() {
     const form = document.querySelector('#form01')
-    const num = form.querySelector('input[name="in_01"]').value
+    const input = form.querySelector('input[name="in_01"]').value
 
-    n1.forEach(num => soma += num);
+    let num = input.split(" ").map(Number)
+    let resultado = resolve01(...num);
     
-
-    //const quantN = n1.length;
-
     form.reset()
-    document.getElementById('output').innerText = n1;
+    document.getElementById('output').innerText = `Média = ${resultado}`;
 }
 
+function resolve01() {
+    let soma = 0;
+    for (let i=0; i<arguments.length; i++) {
+        soma += arguments[i];
+    }
+    return soma / arguments.length;
+} 
+
+//let array = texto.split(" "); // ["Olá", "mundo", "bonito"]
+//.map(Number) Converte cada item do array em número
