@@ -18,6 +18,6 @@ function resolve05(obj) {
 }
 
 function construtora(data) {
-    return `Id: ${data.id}, Nome: ${data.nome}, Média: ${data.media}`;
+    return `Id: ${data.id} \nNome: ${data.nome} \nMédia: ${data.media}`;
 }
 
