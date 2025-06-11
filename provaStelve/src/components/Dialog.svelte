@@ -1,11 +1,8 @@
 <script>
     export let close;
-    export let id;
+   
     export let tarefa;
-    export let descricao;
-    export let prioridade;
-    export let prazo;
-    export let situacao;
+   
 </script>
 
 <main>
@@ -38,7 +35,6 @@
               {tarefa ? (tarefa.status ? "Concluído" : "Pendente") : ""}
             </span>
           </div>
-          <!-- {tarefa?.id} garante que, caso tarefa ainda seja null, o template não quebre-->
 
     </div>
 </main>

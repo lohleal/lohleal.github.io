@@ -126,7 +126,7 @@
     }
 
     .concluida td {
-        text-decoration: line-through;;
+        text-decoration: line-through;
     }
 
     h3 {

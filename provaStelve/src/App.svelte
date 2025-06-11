@@ -46,7 +46,7 @@
             prioridade: prioridade,
             descricao: descricao,
             status: false,
-            mostrarBotao: true
+            mostrarBotao: true,
         };
         data = [...data, objData];
         tarefa = "";
@@ -69,11 +69,10 @@
     }
 
     function tarefaConcluida(tarefa) {
-        data = data.map(t => 
-            t.id === tarefa.id ? { ...t, status: true } : t
-        );  
+        data = data.map((t) =>
+            t.id === tarefa.id ? { ...t, status: true } : t,
+        );
     }
-
 </script>
 
 <main>
