@@ -1,22 +1,19 @@
 require 'socket'
-require 'thread'
+
+def start_server(host, port)
+  client_socket = TCPSocket.new(host, port)
+  
+  puts 'Type your message: '
+  message = gets.chomp
+  client_socket.send(message.encode('utf-8'), 0)
+  
+  client_socket.close
+end
 
 HOST = 'localhost'
-PORT = 9000
+PORT = 9000       
 
-client = UDPSocket.new
+start_server(HOST, PORT)
 
-# Thread para ouvir mensagens do servidor
-Thread.new do
-  loop do
-    data, _ = client.recvfrom(1024)
-    puts "[SERVIDOR]: #{data.force_encoding('UTF-8')}"
-  end
-end
 
-# Loop para enviar mensagens
-loop do
-  print 'Digite sua mensagem: '
-  message = gets.chomp
-  client.send(message, 0, HOST, PORT)
-end
+
